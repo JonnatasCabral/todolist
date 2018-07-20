@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'webpack_loader',
     'import_export',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    
+    'rest_auth.registration',
 
     'common',
     'users',
