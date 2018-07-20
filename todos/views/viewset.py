@@ -1,8 +1,18 @@
 from rest_framework import viewsets
-from todos.models import ToDoList
-from todos.serializers import ToDoListSerializer
+from rest_framework import mixins
+
+from todos import serializers
+from todos import models 
 
 
 class ToDoListViewSet(viewsets.ModelViewSet):
-    queryset = ToDoList.objects.all()
-    serializer_class = ToDoListSerializer
+    queryset = models.ToDoList.objects.all()
+    serializer_class = serializers.ToDoListSerializer
+
+
+class TaskViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin,
+                  mixins.UpdateModelMixin, mixins.DestroyModelMixin,
+                  viewsets.GenericViewSet):
+    queryset = models.Task.objects.all()
+    serializer_class = serializers.TaskSerializer
+    
