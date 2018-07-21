@@ -3,15 +3,6 @@ from todos import models
 from users.serializers import UserSerializers
 
 
-class ToDoListSerializer(serializers.ModelSerializer):
-
-    created_by = UserSerializers(read_only=True)
-    
-    class Meta:
-        model = models.ToDoList
-        fields = ('id', 'title', 'created_by')
-
-
 class TaskSerializer(serializers.ModelSerializer):
 
     title = serializers.CharField(
@@ -23,3 +14,19 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Task
         fields = ('id', 'title', 'todolist', 'deadline', 'is_done', 'users')
+
+
+class ToDoListSerializer(serializers.ModelSerializer):
+
+    created_by = UserSerializers(read_only=True)
+    tasks = serializers.SerializerMethodField()
+
+    def get_tasks(self, obj):
+
+        tasks = models.Task.objects.filter(todolist_id=obj.id)
+
+        serializer = TaskSerializer(tasks, many=True)
+        return serializer.data
+    class Meta:
+        model = models.ToDoList
+        fields = ('id', 'title', 'created_by', 'tasks')

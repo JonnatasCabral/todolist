@@ -15,4 +15,9 @@ class TaskViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin,
                   viewsets.GenericViewSet):
     queryset = models.Task.objects.all()
     serializer_class = serializers.TaskSerializer
-    
+   
+
+class TaskListViewSet(viewsets.ModelViewSet):
+    queryset = models.Task.objects.all()
+    serializer_class = serializers.TaskSerializer
+
