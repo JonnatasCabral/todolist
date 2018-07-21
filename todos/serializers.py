@@ -1,12 +1,15 @@
 from rest_framework import serializers
 from todos import models
+from users.serializers import UserSerializers
+
 
 class ToDoListSerializer(serializers.ModelSerializer):
 
-	class Meta:
-		model = models.ToDoList
-		fields = ('title', 'user')
-
+    created_by = UserSerializers(read_only=True)
+    
+    class Meta:
+        model = models.ToDoList
+        fields = ('id', 'title', 'created_by')
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -15,7 +18,8 @@ class TaskSerializer(serializers.ModelSerializer):
         max_length=100, allow_blank=False, required=True
     )
     deadline = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    users = UserSerializers(many=True, read_only=True)
 
     class Meta:
         model = models.Task
-        fields = ('title', 'todolist', 'deadline', 'done')
+        fields = ('id', 'title', 'todolist', 'deadline', 'is_done', 'users')

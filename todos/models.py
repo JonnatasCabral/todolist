@@ -3,7 +3,7 @@ from users.models import User
 
 
 class ToDoList(models.Model):
-	user = models.ForeignKey(
+	created_by = models.ForeignKey(
 		User, related_name='todo_lists', on_delete=models.CASCADE,
 		blank=False, default=None)
 	title = models.CharField(
@@ -19,7 +19,8 @@ class Task(models.Model):
 	todolist = models.ForeignKey(
 		ToDoList, related_name='tasks', on_delete=models.CASCADE, blank=False)
 	deadline = models.DateTimeField(null=True, blank=True)
-	done = models.BooleanField(default=False)
+	is_done = models.BooleanField(default=False)
+	users = models.ManyToManyField(User, blank=True)
 	
 	def __str__(self):
 		return self.title
