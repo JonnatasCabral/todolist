@@ -37,6 +37,7 @@ psutil = "*"
 ipython = "*"
 django-rest-framework = "*"
 django-rest-auth = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.6"

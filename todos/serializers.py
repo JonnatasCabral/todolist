@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from todos import models
-from users.serializers import UserSerializers
-
+from users.serializers import UserSerializer
 
 class TaskSerializer(serializers.ModelSerializer):
 
@@ -9,7 +8,7 @@ class TaskSerializer(serializers.ModelSerializer):
         max_length=100, allow_blank=False, required=True
     )
     deadline = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
-    users = UserSerializers(many=True, read_only=True)
+    users = UserSerializer(many=True, read_only=True)
 
     class Meta:
         model = models.Task
@@ -18,7 +17,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
 class ToDoListSerializer(serializers.ModelSerializer):
 
-    created_by = UserSerializers(read_only=True)
+    created_by = UserSerializer(read_only=True)
     tasks = serializers.SerializerMethodField()
 
     def get_tasks(self, obj):

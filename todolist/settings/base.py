@@ -24,6 +24,7 @@ ADMINS = (
 
 AUTH_USER_MODEL = 'users.User'
 
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
@@ -37,16 +38,20 @@ INSTALLED_APPS = [
     'django_js_reverse',
     'webpack_loader',
     'import_export',
+
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
     
-    # 'rest_auth.registration',
-
     'common',
     'users',
     'todos'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -138,3 +143,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+ACCOUNT_LOGOUT_ON_GET = True
