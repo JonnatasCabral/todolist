@@ -8,7 +8,7 @@ class TaskSerializer(serializers.ModelSerializer):
         max_length=100, allow_blank=False, required=True
     )
     deadline = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
-    users = UserSerializer(many=True, read_only=True)
+    users = UserSerializer(many=True)
 
     class Meta:
         model = models.Task
@@ -17,7 +17,9 @@ class TaskSerializer(serializers.ModelSerializer):
 
 class ToDoListSerializer(serializers.ModelSerializer):
 
-    created_by = UserSerializer(read_only=True)
+    created_by = UserSerializer(
+        read_only=True, 
+        default=serializers.CurrentUserDefault())
     tasks = serializers.SerializerMethodField()
 
     def get_tasks(self, obj):
@@ -26,6 +28,7 @@ class ToDoListSerializer(serializers.ModelSerializer):
 
         serializer = TaskSerializer(tasks, many=True)
         return serializer.data
+
     class Meta:
         model = models.ToDoList
         fields = ('id', 'title', 'created_by', 'tasks')
