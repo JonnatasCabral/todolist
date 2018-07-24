@@ -7,8 +7,10 @@ class TaskSerializer(serializers.ModelSerializer):
     title = serializers.CharField(
         max_length=100, allow_blank=False, required=True
     )
-    deadline = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
-    users = UserSerializer(many=True)
+    deadline = serializers.DateTimeField(
+        format="%Y-%m-%d %H:%M:%S",
+        required=False)
+    users = UserSerializer(many=True, required=False)
 
     class Meta:
         model = models.Task
