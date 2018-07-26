@@ -1,11 +1,10 @@
 import axios from "axios";
 import getCookie from '../common/helpers'
-
-export const SET_TOKEN = "set_token";
+import setToken from '../actions/actionLogin';
 
 const ROOT_URL = "http://localhost:8000/api/v1/rest-auth/login/";
 
-const login = (values) => {
+const login = (userData, callback) => {
   const csrf = getCookie('csrftoken')
   const headers = {
     headers: {
@@ -16,19 +15,14 @@ const login = (values) => {
 
   }
   return (dispatch) => {
-  	axios.post(`${ROOT_URL}`, values, headers)
-  	  .then((data) => {
-  	  	dispatch(setToken(data.data.key));
-  	  })
-  	  .catch((error) => {  	
-  	  	console.log(error)
-  	  });
+    axios.post(`${ROOT_URL}`, userData, headers)
+      .then((data) => {
+        dispatch(setToken(data));
+      })
+      .catch((error) => {   
+        console.log(error)
+      });
   } 
 }
-
-const setToken = (token) => ({
-  type: SET_TOKEN,
-  token
-});
 
 export default login;

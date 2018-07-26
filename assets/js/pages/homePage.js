@@ -5,7 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import store from '../store';
-import Login from '../components/login'
+import Login from '../components/auth/login'
+import ToDoList from '../components/todos/toDoList'
 
 
 ReactDOM.render(
@@ -13,6 +14,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
+          <Route path='/todolist' component={ToDoList} />
           <Route path='/' component={Login} />
         </Switch>
       </div>

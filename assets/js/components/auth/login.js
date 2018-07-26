@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import login   from '../actions/login';
+import login from '../../api/authApi';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 
 
 class Login extends Component {
@@ -23,7 +24,9 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password 
     }
-    this.props.login(user);
+    this.props.login(user, () => {
+      this.props.history.push("/todolist");
+    });
   }
 
   updateState (e, field) {
@@ -36,6 +39,9 @@ class Login extends Component {
   }
 
   render(){
+    if (this.props.isAuthenticated === true) {
+      return <Redirect to='/todolist' />
+    }
     return(
       <div className="container align-baseline Login">
         <Form onSubmit={this.onSubmit.bind(this)}>
@@ -51,11 +57,20 @@ class Login extends Component {
               onChange={(e) => {this.updateState(e, 'password')}}
             />
           </FormGroup>
-          <Button type="submit" color="primary">Login</Button>
+          <FormGroup>
+            <Button type="submit" color="primary">Login</Button>
+          </FormGroup>
         </Form>
       </div>
     );
   }
 }
 
-export default connect(null, { login })(Login);
+
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.user.isAuthenticated,
+  }
+}
+
+export default connect(mapStateToProps, { login })(Login);
