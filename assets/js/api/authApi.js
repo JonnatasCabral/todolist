@@ -2,7 +2,7 @@ import axios from "axios";
 import getCookie from '../common/helpers'
 import setToken from '../actions/actionLogin';
 
-const ROOT_URL = "http://localhost:8000/api/v1/rest-auth/login/";
+const ROOT_URL = "/api/v1/rest-auth/login/";
 
 const login = (userData, callback) => {
   const csrf = getCookie('csrftoken')

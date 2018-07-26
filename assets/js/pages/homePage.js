@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import store from '../store';
 import Login from '../components/auth/login'
-import ToDoList from '../components/todos/toDoList'
+import ToDoList from '../components/todos/todoList'
 
 
 ReactDOM.render(
