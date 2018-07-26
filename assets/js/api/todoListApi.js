@@ -1,11 +1,11 @@
 import axios from "axios";
 import getCookie from '../common/helpers';
-import fetchTodoLists from '../actions/actionTodoList';
+import fetchTodoListsAction from '../actions/actionTodoList';
 
 
 const ROOT_URL = "/api/v1/todolists/";
 
-const fetchToDoLists = (user) => {
+const fetchTodoLists = (user) => {
   return (dispatch) => {
     const csrf = getCookie('csrftoken');
     const token = user.token
@@ -19,7 +19,7 @@ const fetchToDoLists = (user) => {
     }
     axios.get(`${ROOT_URL}`, headers)
       .then((data) => {
-        dispatch(fetchTodoLists(data));
+        dispatch(fetchTodoListsAction(data));
       })
       .catch((error) => {   
         console.log(error)
@@ -27,11 +27,4 @@ const fetchToDoLists = (user) => {
   } 
 }
 
-const loadTodos = (token) => {
-  return (dispatch) => {
-    return todoApi.getAllTodos(token).then(todos => {
-      dispatch(loadTodoSuccess(todos));
-    });
-  }
-};
-export default fetchToDoLists;
+export default fetchTodoLists;

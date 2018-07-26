@@ -1,20 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import loadTodos from '../../api/todoListApi';
+import fetchTodoLists from '../../api/todoListApi';
+import { Table } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+
 
 class ToDoList extends Component{
   componentDidMount(){
-    this.props.fetchToDoLists(this.props.user)
+    this.props.fetchTodoLists(this.props.user)
   }
-  renderTodoLists() {
-    debugger
-    if(this.props.todolists != []){
-      return _.map(this.props.todolists, todolist => {
-        
+
+  renderTasks(tasks){
+    return _.map(tasks, task => {
+      return (
+        <tr>
+          <td><Input value={task.is_done} type="checkbox" />{' asd'}</td>
+          <td>{task.title}</td>
+        </tr>
+      );
+    });
+  }
+  renderTodoLists(todolists) {
+    if(!_.isEmpty(todolists)){
+      return _.map(todolists, todolist => {
         return (
-          <li className="list-group-item" key={todolist.id}>
-              {todolist.title}
-          </li>
+          <div> 
+            <h3>{todolist.title}</h3>
+            <Table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>task</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderTasks(todolist.tasks)}
+              </tbody>
+            </Table>
+          </div>
         );
       });
     }
@@ -23,9 +46,7 @@ class ToDoList extends Component{
 
     return(
       <div>
-        <ul className="list-group">
-          { this.renderTodoLists() }
-        </ul>
+        { this.renderTodoLists(this.props.todolists) }
       </div>
     );
   }
@@ -39,8 +60,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchToDoLists: (user) => {
-      dispatch(loadTodos(user));
+    fetchTodoLists: (user) => {
+      dispatch(fetchTodoLists(user));
     }
   }
 }

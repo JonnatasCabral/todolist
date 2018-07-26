@@ -2,9 +2,7 @@ import _ from "lodash";
 import { FETCH_TODOLISTS } from '../actions/actionTodoList';
 
 
-const defaultState = {
-  todolists: []
-}; 
+const defaultState = {}; 
 
 export default (state = defaultState, action) => {
   switch(action.type){
