@@ -16,8 +16,8 @@ class Routes extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route exact path='/todolist' component={ToDoList} />
-            <Route path='/' component={Login} />
+            <Route path='/todolist' component={ToDoList} />
+            <Route exact path='/' component={Login} />
           </Switch>
         </div>
       </BrowserRouter>

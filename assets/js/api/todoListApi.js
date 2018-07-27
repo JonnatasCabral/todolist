@@ -1,6 +1,6 @@
 import axios from "axios";
 import getCookie from '../common/helpers';
-import fetchTodoListsAction from '../actions/actionTodoList';
+import { fetchTodoListsAction, addNewTodoList } from '../actions/actionTodoList';
 
 
 const ROOT_URL = "/api/v1/todolists/";
@@ -43,8 +43,7 @@ class TodoListApi {
       }
       axios.post(ROOT_URL, data, config)
         .then((data) =>{
-          debugger
-          dispatch()
+          dispatch(addNewTodoList(data))
         }).catch((error) =>{
           console.log(error)
         });

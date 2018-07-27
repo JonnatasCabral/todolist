@@ -37,10 +37,9 @@ export const logout = () => {
 
   }
   return (dispatch) => {
-    axios.get(`${LOGOUT_URL}`, config)
+    return axios.get(`${LOGOUT_URL}`, config)
       .then((data) => {
         dispatch(sucessLogout(data));
-        
       })
       .catch((error) => {   
         console.log(error)

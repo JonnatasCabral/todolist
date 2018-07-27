@@ -1,19 +1,20 @@
 import { SUCCESS_LOGOUT } from '../actions/actionAuth';
 
-const delogedState = {
-  isAuthenticated: false,
-  token: '',
-  status: ''
+
+const defaultState = {
+  isAuthenticated: true,
+  token: localStorage.getItem("token"),
 }; 
 
 export default (state, action) => {
-  debugger
   switch(action.type){
     case SUCCESS_LOGOUT:
-      return delogedState;
-    default:
-    	return state
+      localStorage.removeItem("token", '');
+      return {
+        isAuthenticated: false,
+        token: '',
+      };
   }
-  return state
+  return defaultState
 }
 

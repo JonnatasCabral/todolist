@@ -36,7 +36,7 @@ class ToDoListContainer extends Component{
         return (
           <div key={todolist.id}> 
             <h3>{todolist.title}</h3>
-            <Table >
+            <Table>
               <thead>
                 <tr>
                   <th>Tasks</th>
