@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col  } from 'reactstrap';
 
-import TodoListForm from '../components/todos/todoListForm';
-import TodoListApi from '../api/todoListApi';
+import TodoListForm from '../../components/todos/todoListForm';
+import TodoListApi from '../../api/todoListApi';
 
 
 class AddToDoListContainer extends Component{
@@ -34,13 +34,8 @@ class AddToDoListContainer extends Component{
   }
   render() {
 
-    return(
-        <Row>
-          <Col xs="6" sm="4">
-            <TodoListForm onSubmit={this.onSubmit} updateState={this.updateState} buttonTitle="Add Todolist"/>
-          </Col>
-        </Row>
-        
+    return(  
+      <TodoListForm onSubmit={this.onSubmit} updateState={this.updateState} buttonTitle="Add Todolist"/>   
     );
   }
 }
