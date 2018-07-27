@@ -9,9 +9,8 @@ class LogoutContainer extends Component {
 
   onClick(e){
     e.preventDefault()
-    this.props.logout(() => {
-      this.props.history.push("/login");
-    });
+    this.props.logout();
+    this.props.history.push("/login");
   }
   render(){
     return (

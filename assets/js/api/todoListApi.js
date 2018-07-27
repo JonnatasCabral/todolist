@@ -48,7 +48,6 @@ class TodoListApi {
           console.log(error)
         });
     }
-
-}
+  }
 }
 export default TodoListApi;

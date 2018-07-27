@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import Login from '../components/auth/login'
 import ToDoList from '../components/todos/todoList'
+import AddTask from '../containers/task/addTaskContainer'
 
 
 class Routes extends Component {
@@ -17,6 +18,7 @@ class Routes extends Component {
         <div>
           <Switch>
             <Route path='/todolist' component={ToDoList} />
+            <Route path='/addtask/:id' component={AddTask} />
             <Route exact path='/' component={Login} />
           </Switch>
         </div>
