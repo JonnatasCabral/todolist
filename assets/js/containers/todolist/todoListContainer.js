@@ -12,22 +12,31 @@ class ToDoListContainer extends Component{
   constructor(props){
     super(props);
     this.state = {
-      'newTodolistTitle': ''
+      'newTodolistTitle': '',
     }
+    this.removeTask = this.removeTask.bind(this);
   }
   componentDidMount(){
     this.props.fetchTodoLists(this.props.user)
   }
 
-  renderTasks(tasks){
+  renderTasks(tasks) {
     return _.map(tasks, task => {
       return (
         <tr key={task.id}>
           <td>{task.title}</td>
           <td>{task.text}</td>
+          <td>{task.assigned_to}</td>
           <td><Input value={task.is_done} type="checkbox" />{''}</td>
         </tr>
       );
+    });
+  }
+
+  removeTask(todolist) {
+
+    this.props.deleteTodoList({
+      id: todolist.id 
     });
   }
 
@@ -43,9 +52,13 @@ class ToDoListContainer extends Component{
                 <tr>
                   <th>Tasks</th>
                   <th>Descrição</th>
+                  <th>Assigned To</th>
                   <th>Done</th>
                   <th>
                     <Link to={url} className="btn btn-primary">Add task</Link>
+                  </th>
+                  <th>
+                    <Button className="btn btn-danger" onClick={() => this.removeTask(todolist)}>Remove</Button>
                   </th>
                 </tr>
               </thead>
@@ -77,6 +90,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchTodoLists: (user) => {
       dispatch(TodoListApi.fetchTodoLists(user));
+    },
+    deleteTodoList: (id) => {
+      dispatch(TodoListApi.delete(id))
     }
   }
 }

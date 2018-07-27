@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { FETCH_TODOLISTS, NEW_TODOLISTS } from '../actions/actionTodoList';
+import { FETCH_TODOLISTS, NEW_TODOLISTS, DELETE_TODOLIST } from '../actions/actionTodoList';
 
 
 const defaultState = {}; 
@@ -9,12 +9,12 @@ export default (state = defaultState, action) => {
     case FETCH_TODOLISTS:
       return _.mapKeys(action.payload.data.results, "id");
     case NEW_TODOLISTS:
-      debugger
     	return {
     		...state,
-    		[action.payload.id] : { ...action.payload.data }
+    		[action.payload.data.id] : { ...action.payload.data }
     	} 
-
+    case DELETE_TODOLIST:
+      return _.omit(state, [action.payload.id])
   }
   return state
 }
