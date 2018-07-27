@@ -10,11 +10,11 @@ class TaskSerializer(serializers.ModelSerializer):
     deadline = serializers.DateTimeField(
         format="%Y-%m-%d %H:%M:%S",
         required=False)
-    users = UserSerializer(many=True, required=False)
+    assigned_to = UserSerializer(required=False)
 
     class Meta:
         model = models.Task
-        fields = ('id', 'title', 'todolist', 'deadline', 'is_done', 'users')
+        fields = ('id', 'title', 'todolist', 'deadline', 'is_done', 'assigned_to')
 
 
 class ToDoListSerializer(serializers.ModelSerializer):

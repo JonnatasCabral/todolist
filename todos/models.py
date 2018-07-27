@@ -20,7 +20,7 @@ class Task(models.Model):
 		ToDoList, related_name='tasks', on_delete=models.CASCADE, blank=False)
 	deadline = models.DateTimeField(null=True, blank=True)
 	is_done = models.BooleanField(default=False)
-	users = models.ManyToManyField(User, blank=True)
+	assigned_to = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
 	
 	def __str__(self):
 		return self.title

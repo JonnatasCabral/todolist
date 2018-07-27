@@ -22,8 +22,9 @@ class ToDoListContainer extends Component{
     return _.map(tasks, task => {
       return (
         <tr key={task.id}>
-          <td><Input value={task.is_done} type="checkbox" />{' asd'}</td>
           <td>{task.title}</td>
+          <td>{task.texto}</td>
+          <td><Input value={task.is_done} type="checkbox" />{''}</td>
         </tr>
       );
     });
@@ -38,9 +39,9 @@ class ToDoListContainer extends Component{
             <Table >
               <thead>
                 <tr>
-                  <th>done</th>
-                  <th>tasks</th>
-                  <th></th>
+                  <th>Tasks</th>
+                  <th>Texto</th>
+                  <th>Done</th>
                 </tr>
               </thead>
               <tbody>
