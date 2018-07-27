@@ -1,4 +1,4 @@
-import { SET_TOKEN } from '../actions/actionLogin';
+import { SUCCESS_LOGIN } from '../actions/actionAuth';
 
 const defaultState = {
   isAuthenticated: '',
@@ -16,7 +16,7 @@ const userInfo = (action, authenticated) => {
 
 export default (state = defaultState, action) => {
   switch(action.type){
-    case SET_TOKEN:
+    case SUCCESS_LOGIN:
       localStorage.setItem("token", action.data.data.key);
       return userInfo(action, true);
     default:

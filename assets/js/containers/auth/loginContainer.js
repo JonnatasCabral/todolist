@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import login from '../../api/authApi';
+import { login } from '../../api/authApi';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 

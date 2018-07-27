@@ -6,6 +6,7 @@ import fetchTodoListsAction from '../actions/actionTodoList';
 const ROOT_URL = "/api/v1/todolists/";
 
 class TodoListApi {
+  
   static fetchTodoLists (user) {
     return (dispatch) => {
       const csrf = getCookie('csrftoken');
