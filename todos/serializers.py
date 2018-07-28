@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from todos import models
 from users.serializers import UserSerializer
+from users.models import User
 
 class TaskSerializer(serializers.ModelSerializer):
 
@@ -11,12 +12,18 @@ class TaskSerializer(serializers.ModelSerializer):
         format="%Y-%m-%d %H:%M:%S",
         required=False)
     assigned_to = UserSerializer(required=False)
+    assigned_to_id = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(), write_only=True, required=False)
+
+    def validate(self, data):
+        data['assigned_to'] = data.pop('assigned_to_id', None)
+        return data
 
     class Meta:
         model = models.Task
         fields = (
             'id', 'title','text', 'todolist', 'deadline',
-            'is_done', 'assigned_to'
+            'is_done', 'assigned_to_id', 'assigned_to'
         )
 
 

@@ -2,11 +2,13 @@ import { combineReducers } from "redux";
 import user from './reducerAuthLogin';
 import userDislogged from './reducerAuthLogout';
 import todolists from './reducerTodoList.js';
+import users from './reducerUsers.js';
 
 const rootReducer = combineReducers({
 	user: user,
 	todolists: todolists,
-	userDislogged: userDislogged
+	userDislogged: userDislogged,
+	users: users
 
 });
 

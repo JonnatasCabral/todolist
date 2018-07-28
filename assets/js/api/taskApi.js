@@ -1,14 +1,39 @@
 import axios from "axios";
 
 import getCookie from '../common/helpers';
+import { fetchUsersAction } from '../actions/actionTask';
 
 const TASK_URL = '/api/v1/task/';
 
 class TaskApi {
+
+  static fetchUsers () {
+    return (dispatch) => {
+      const USER_URL = '/api/v1/users/';
+      const csrf = getCookie('csrftoken');
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
+          'authorization': `Token ${token}`
+        },
+      }
+      axios.get(`${USER_URL}`, config)
+        .then((data) => {
+          dispatch(fetchUsersAction(data));
+        })
+        .catch((error) => {   
+          console.log(error)
+        });
+    } 
+  }
+
   static createTask (task) {
     return (dispatch) => {
       const csrf = getCookie('csrftoken');
-      const token = localStorage.getItem('token')
+      const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',

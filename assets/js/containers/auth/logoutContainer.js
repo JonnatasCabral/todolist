@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-
 import { logout } from '../../api/authApi';
 
 
@@ -10,7 +9,7 @@ class LogoutContainer extends Component {
   onClick(e){
     e.preventDefault()
     this.props.logout();
-    this.props.history.push("/login");
+    document.location = "/";
   }
   render(){
     return (
