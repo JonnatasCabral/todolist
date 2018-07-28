@@ -10,7 +10,7 @@ class TaskApi {
 
   static fetchUsers () {
     return (dispatch) => {
-      const USER_URL = '/api/v1/users/';
+      const USER_URL = '/api/v1/users/list/';
       const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
