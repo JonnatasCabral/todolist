@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { login } from '../../api/authApi';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
+import { login } from '../../api/authApi';
 
 
 class LoginContainer extends Component {
@@ -59,6 +60,9 @@ class LoginContainer extends Component {
           </FormGroup>
           <FormGroup>
             <Button type="submit" color="primary">Login</Button>
+          </FormGroup>
+          <FormGroup>
+            <Link to="/register">Criar conta</Link>
           </FormGroup>
         </Form>
       </div>

@@ -46,3 +46,24 @@ export const logout = () => {
       });
   } 
 }
+
+export const createUser = (user) => {
+  debugger
+  return (dispatch) => {
+    const USER_URL = "/api/v1/users/register/";
+    const csrf = getCookie('csrftoken');
+    const config = {
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrf,
+      },
+    }
+    axios.post(`${USER_URL}`, user ,config)
+      .then((data) => {
+      })
+      .catch((error) => {   
+        console.log(error)
+      });
+  } 
+}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import _ from 'lodash';
 import Select from 'react-select';
 
+
 class TaskForm extends React.Component {
 
   componentDidUpdate(prevProps) {
@@ -18,7 +19,7 @@ class TaskForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container align-baseline Login">
         <Form onSubmit={this.props.onSubmit.bind(this.props)}>
           <Input
             value={this.props.title} 
