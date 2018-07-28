@@ -2,6 +2,7 @@ import axios from "axios";
 
 import getCookie from '../common/helpers';
 import { fetchUsersAction, fetchTaskAction } from '../actions/actionTask';
+import { createTaskAction, updateTaskAction, deleteTaskAction } from '../actions/actionTask';
 
 const TASK_URL = '/api/v1/task';
 
@@ -65,6 +66,7 @@ class TaskApi {
       }
       axios.post(`${TASK_URL}/`, task ,config)
         .then((data) => {
+          dispatch(createTaskAction(data));
         })
         .catch((error) => {   
           console.log(error)
@@ -85,11 +87,33 @@ class TaskApi {
       }
       axios.put(`${TASK_URL}/${task.id}/`, task ,config)
         .then((data) => {
+          dispatch(updateTaskAction(data));
         })
         .catch((error) => {   
           console.log(error)
         });
     } 
+  }
+  static deleteTask(data) {
+    return (dispatch) => {
+      const csrf = getCookie('csrftoken');
+      const token = localStorage.token
+      const config = {
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
+          'Authorization': `Token ${token}`
+        },
+      }
+      
+      axios.delete(`${TASK_URL}/${data.id}/`, config)
+        .then(() =>{
+          dispatch(deleteTaskAction(data))
+        }).catch((error) =>{
+          console.log(error)
+        });
+    }
   }
 }
   

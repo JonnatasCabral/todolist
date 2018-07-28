@@ -5,6 +5,7 @@ import { Table, Button, Form, FormGroup, Label, Input, FormText } from 'reactstr
 import { Link } from "react-router-dom";
 
 import AddToDoListContainer from './addTodoListContainer';
+import TaskListContainer from '../task/taskListContainer';
 import TodoListApi from '../../api/todoListApi';
 
 
@@ -22,26 +23,10 @@ class ToDoListContainer extends Component{
     this.props.fetchTodoLists(this.props.user);
   }
 
-
-  renderTasks(tasks) {
-    return _.map(tasks, task => {
-      let url = `/edittask/${task.id}/`;
-      return (
-        <tr key={task.id}>
-          <td>{task.title}</td>
-          <td>{task.text}</td>
-          <td>{_.has(task, 'assigned_to.name') ? task.assigned_to.username : '-' }</td>
-          <td><Input value={task.is_done} type="checkbox" />{''}</td>
-          <td><Link to={url}>Edit </Link></td>
-        </tr>
-      );
-    });
-  }
-
-  removeTodolist(todolist) {
+  removeTodolist(id) {
 
     this.props.deleteTodoList({
-      id: todolist.id 
+      id: id 
     });
   }
 
@@ -63,13 +48,11 @@ class ToDoListContainer extends Component{
                     <Link to={url} className="btn btn-primary">Add task</Link>
                   </th>
                   <th>
-                    <Button className="btn btn-danger" onClick={() => this.removeTodolist(todolist)}>Remove</Button>
+                    <Button className="btn btn-danger" onClick={() => this.removeTodolist(todolist.id)}>Remove</Button>
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                {this.renderTasks(todolist.tasks)}
-              </tbody>
+              <TaskListContainer tasks={todolist.tasks}/>
             </Table>
           </div>
         );
