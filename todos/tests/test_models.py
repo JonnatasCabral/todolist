@@ -40,13 +40,15 @@ class TestTask(TestCase):
 		with self.assertRaises(IntegrityError):
 			models.Task.objects.create(todolist=self.todo_list)
 
-	def test_add_users_in_task(self):
-		user_1 = mommy.make('users.User', email='user1@gmail.com')	
-		user_2 = mommy.make('users.User', email='user2@gmail.com')
+	def test_assign(self):
+		user = mommy.make('users.User', email='user1@gmail.com')	
+		user_2 = mommy.make('users.User', email='user2@gmail.com')	
 		task = models.Task.objects.create(
 			todolist=self.todo_list,
-			title='Title')
-		task.users.add(user_1)
-		task.users.add(user_2)
+			title='Title',
+			assigned_to=user)
 		task.save()
-		self.assertEquals(task.users.count(), 2)
+		self.assertEqual(task.assigned_to, user)
+		task.assigned_to = user_2
+		task.save()
+		self.assertEqual(task.assigned_to, user_2)

@@ -37,19 +37,20 @@ class TestToDoListSerializer(TestCase):
 			'request': request
 		}
 		payload = {
-			'title':'Title Task',
+			'title':'Title Todolist',
 			}
 		serializer = self.serializer_class(data=payload, context=context)
 		self.assertTrue(serializer.is_valid())
 
 	def  test_without_user_in_context(self):
 		request = MagicMock()
+		request.user = None
 		context = {
 			'request': request
 		}
 		payload = {
-			'title':'Title Task',
+			'title':'Title Todolist',
 			}
-		serializer = self.serializer_class(data=payload, context=context)
-		self.assertFalse(serializer.is_valid())
+		with self.assertRaises(KeyError) as raises:
+			self.serializer_class(data=payload).is_valid()
 

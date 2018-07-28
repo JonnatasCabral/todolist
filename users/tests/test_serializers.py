@@ -11,14 +11,14 @@ class TestUserSerializer(TestCase):
 		payload = {
 			'id': 1,
 			'email': 'test@gmail.com',
-			'name':	'test user'	}
+			'username':	'user'	}
 		serializer = self.serializer_class(data=payload)
 		self.assertTrue(serializer.is_valid())
 
-	def test_invalid_email(self):
+	def test_invalid_values(self):
 		payload = {
 			'id': 1,
 			'email': 'incorrect_email_format',
-			'name':	'test user'	}
+			'username':	'test user'	}
 		serializer = self.serializer_class(data=payload)
 		self.assertFalse(serializer.is_valid())
