@@ -11,7 +11,8 @@ class TestUserSerializer(TestCase):
 		payload = {
 			'id': 1,
 			'email': 'test@gmail.com',
-			'username':	'user'	}
+			'username':	'user',
+			'password': 'password'	}
 		serializer = self.serializer_class(data=payload)
 		self.assertTrue(serializer.is_valid())
 
