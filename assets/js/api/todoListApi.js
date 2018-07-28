@@ -67,7 +67,6 @@ class TodoListApi {
         .then(() =>{
           dispatch(deleteTodoList(data))
         }).catch((error) =>{
-          debugger
           console.log(error)
         });
     }

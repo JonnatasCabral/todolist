@@ -19,6 +19,7 @@ class Routes extends Component {
           <Switch>
             <Route path='/todolist' component={ToDoList} />
             <Route path='/addtask/:id' component={AddTask} />
+            <Route path='/edittask/:id' component={AddTask} />
             <Route exact path='/' component={Login} />
           </Switch>
         </div>
