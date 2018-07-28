@@ -3,21 +3,23 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 const TodoListForm = (props) => {
   return (
-    <div>
-      <Form onSubmit={props.onSubmit.bind(props)}>
-        <Input 
-          type="title"
-          name="TodoListtitle" 
-          id="todoListTitle" 
-          placeholder="title"
-          onChange={(e) => {props.updateState(e, 'title')}}
-        required/>
-        <Button type="submit" color="primary">
-          {props.buttonTitle}
-        </Button>
+      <Form onSubmit={props.onSubmit.bind(props)} inline>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Input 
+            type="title"
+            name="TodoListtitle" 
+            id="todoListTitle" 
+            placeholder="title"
+            onChange={(e) => {props.updateState(e, 'title')}}
+          required/>
+        </FormGroup>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Button type="submit" color="primary">
+            {props.buttonTitle}
+          </Button>
+        </FormGroup>
       </Form>
       
-    </div>
   );
 };
 

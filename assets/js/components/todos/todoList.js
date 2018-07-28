@@ -14,12 +14,10 @@ class ToDoList extends Component{
     return(
       <Container>
         <Row>
-          <Col xs="6" sm="4">
+          <Col xs="9">
             <AddToDoListContainer />
           </Col>
-          <Col xs="6" sm="4">
-          </Col>
-          <Col xs="6" sm="4">
+          <Col xs="3">
             <LogoutContainer />
           </Col>
         </Row>
