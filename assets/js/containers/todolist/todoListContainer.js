@@ -15,7 +15,7 @@ class ToDoListContainer extends Component{
     this.state = {
       'newTodolistTitle': '',
     }
-    this.removeTask = this.removeTask.bind(this);
+    this.removeTodolist = this.removeTodolist.bind(this);
   }
 
   componentDidMount(){
@@ -38,7 +38,7 @@ class ToDoListContainer extends Component{
     });
   }
 
-  removeTask(todolist) {
+  removeTodolist(todolist) {
 
     this.props.deleteTodoList({
       id: todolist.id 
@@ -63,7 +63,7 @@ class ToDoListContainer extends Component{
                     <Link to={url} className="btn btn-primary">Add task</Link>
                   </th>
                   <th>
-                    <Button className="btn btn-danger" onClick={() => this.removeTask(todolist)}>Remove</Button>
+                    <Button className="btn btn-danger" onClick={() => this.removeTodolist(todolist)}>Remove</Button>
                   </th>
                 </tr>
               </thead>
