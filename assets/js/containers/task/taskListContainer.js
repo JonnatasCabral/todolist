@@ -18,9 +18,9 @@ class TaskListContainer extends Component{
   }
 
 
-  removeTask(id){
+  removeTask(task){
     this.props.deleteTask({
-      id: id
+      task: task
     })
   }
 
@@ -34,7 +34,7 @@ class TaskListContainer extends Component{
           <td>{_.has(task, 'assigned_to.name') ? task.assigned_to.username : '-' }</td>
           <td><Input value={task.is_done} type="checkbox" />{''}</td>
           <td><Link to={url}>Edit </Link></td>
-          <td><Button onClick={() => this.removeTask(task.id)}>Remove</Button></td>
+          <td><Button onClick={() => this.removeTask(task)}>Remove</Button></td>
 
         </tr>
       );

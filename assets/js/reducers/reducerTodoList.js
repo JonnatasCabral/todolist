@@ -20,6 +20,7 @@ export default (state = defaultState, action) => {
     case DELETE_TODOLIST:
       return _.omit(state, [action.payload.id])
     case CREATED_TASK:
+      debugger
       return {
         task: action.payload.data
       }
@@ -29,7 +30,14 @@ export default (state = defaultState, action) => {
         task: action.payload.data
       }
     case DELETE_TASK:
-      return _.omit(state, [action.payload.id])
+      const new_todo = {
+        ...state[action.payload.task.todolist],
+        tasks: _.omit(_.mapKeys(state[action.payload.task.todolist].tasks, "id"), action.payload.task.id)
+      };      
+      return {
+        ...state,
+        [action.payload.task.todolist]: new_todo
+      }
     default:
       return state
   }
