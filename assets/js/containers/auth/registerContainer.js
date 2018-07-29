@@ -49,13 +49,13 @@ class RegisterContainer extends Component {
             <Label for="Username">Username</Label>
             <Input type="username" name="username" id="Username" placeholder="username"
               onChange={(e) => {this.updateState(e.target.value, 'username')}}
-            />
+            required/>
           </FormGroup>
           <FormGroup>
             <Label for="Password">Password</Label>
             <Input type="password" name="password" id="Password" placeholder="password"
               onChange={(e) => {this.updateState(e.target.value, 'password')}}
-            />
+            required/>
           </FormGroup>
           <FormGroup>
             <Button type="submit" color="primary">Submit</Button>

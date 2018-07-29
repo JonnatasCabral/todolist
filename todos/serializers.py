@@ -44,3 +44,13 @@ class ToDoListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ToDoList
         fields = ('id', 'title', 'created_by', 'tasks')
+
+
+class UpdateDoneSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = models.Task
+        fields = (
+            'id', 'is_done'
+        )

@@ -15,13 +15,27 @@ class TaskListContainer extends Component{
   constructor (props){
     super(props);
     this.removeTask = this.removeTask.bind(this);
+    this.updateTaskState = this.updateTaskState.bind(this);
   }
 
-
-  removeTask(task){
+  removeTask (task){
     this.props.deleteTask({
       task: task
-    })
+    });
+  }
+  
+  updateTaskState (task){
+    let new_task = {};
+    if (task.is_done){
+       new_task = {
+        "id":task.id, "title": task.title, "todolist":task.todolist,"is_done":false
+      }
+    } else {
+       new_task = {
+        "id":task.id, "title": task.title, "todolist":task.todolist,"is_done":true
+      }
+    }
+    this.props.updateStateTask(new_task);
   }
 
   renderTasks(tasks) {
@@ -31,11 +45,16 @@ class TaskListContainer extends Component{
         <tr key={task.id}>
           <td>{task.title}</td>
           <td>{task.text}</td>
-          <td>{_.has(task, 'assigned_to.name') ? task.assigned_to.username : '-' }</td>
-          <td><Input value={task.is_done} type="checkbox" />{''}</td>
+          <td>{_.has(task, 'assigned_to.username') ? task.assigned_to.username : '-' }</td>
+          <td>
+            <Input 
+            onClick={() => this.updateTaskState(task)} type="checkbox"
+            defaultChecked={task.is_done}
+
+            />{''}
+          </td>
           <td><Link to={url}>Edit </Link></td>
           <td><Button onClick={() => this.removeTask(task)}>Remove</Button></td>
-
         </tr>
       );
     });
@@ -48,6 +67,7 @@ class TaskListContainer extends Component{
       tasks={this.props.tasks}
       renderTasks={this.renderTasks}
       removeTask={this.removeTask}
+      updateTaskState={this.updateTaskState}
       />
     );
   }
@@ -62,6 +82,9 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteTask: (id) => {
       dispatch(TaskApi.deleteTask(id))
+    },
+    updateStateTask: (task) => {
+      dispatch(TaskApi.updateStateTask(task))
     }
   }
 }
