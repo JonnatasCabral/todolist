@@ -65,8 +65,8 @@ class TaskApi {
         },
       }
       axios.post(`${TASK_URL}/`, task ,config)
-        .then(() => {
-          dispatch(createTaskAction(task));
+        .then((data) => {
+          dispatch(createTaskAction(data));
         })
         .catch((error) => {   
           console.log(error)
@@ -86,8 +86,8 @@ class TaskApi {
         },
       }
       axios.put(`${TASK_URL}/${task.id}/`, task ,config)
-        .then(() => {
-          dispatch(updateTaskAction(task));
+        .then((data) => {
+          dispatch(updateTaskAction(data));
         })
         .catch((error) => {   
           console.log(error)

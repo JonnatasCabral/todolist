@@ -20,10 +20,16 @@ export default (state = defaultState, action) => {
     case DELETE_TODOLIST:
       return _.omit(state, [action.payload.id])
     case CREATED_TASK:
-      debugger
+      const todolist = _.map(state, todolist => {
+        if (todolist.id === action.payload.data.todolist){
+          todolist.tasks = todolist.tasks.concat(action.payload.data)
+          return todolist
+        }
+      });
       return {
-        task: action.payload.data
-      }
+        ...state,
+        [action.payload.data.todolist]: todolist[0]
+      };
     case UPDATED_TASK:
       return {
         ...state,
