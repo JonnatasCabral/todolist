@@ -48,7 +48,6 @@ export const logout = () => {
 }
 
 export const createUser = (user) => {
-  debugger
   return (dispatch) => {
     const USER_URL = "/api/v1/users/register/";
     const csrf = getCookie('csrftoken');
