@@ -2,6 +2,7 @@ import axios from "axios";
 import getCookie from '../common/helpers'
 import { sucessLogin, sucessLogout} from '../actions/actionAuth';
 
+axios.defaults.xsrfCookieName = 'csrftoken'
 
 export const login = (user) => {
   const LOGIN_URL = "/api/v1/rest-auth/login/";

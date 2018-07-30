@@ -2,7 +2,7 @@ import axios from "axios";
 import getCookie from '../common/helpers';
 import { fetchTodoListsAction, addNewTodoList, deleteTodoList } from '../actions/actionTodoList';
 
-
+axios.defaults.xsrfCookieName = 'csrftoken'
 const ROOT_URL = "/api/v1/todolists/";
 
 class TodoListApi {
