@@ -61,7 +61,7 @@ class TaskForm extends React.Component {
               id="taskText" 
               type="datetime-local"
               onChange={(e) => {this.props.updateState(e.target.value, 'deadline')}}
-            />
+            required/>
           </FormGroup>
           <FormGroup>
             <Button type="submit" color="primary">
