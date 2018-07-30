@@ -55,7 +55,7 @@ class TaskListContainer extends Component{
           </td>
           <td>{task.deadline}</td>
           <td><Link to={url}>Edit </Link></td>
-          <td><Button onClick={() => this.removeTask(task)}>Remove</Button></td>
+          <td><Button outline color="danger"  onClick={() => this.removeTask(task)}>Remove Task</Button></td>
         </tr>
       );
     });
