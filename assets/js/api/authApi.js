@@ -2,6 +2,8 @@ import axios from "axios";
 import getCookie from '../common/helpers'
 import { sucessLogin, sucessLogout} from '../actions/actionAuth';
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 export const login = (user) => {
   const LOGIN_URL = "/api/v1/rest-auth/login/";
@@ -10,7 +12,7 @@ export const login = (user) => {
     headers: {
       'Accept': 'application/json',
       'Content-type': 'application/json',
-      'X-CSRFToken': csrf
+      
     },
 
   }
@@ -32,7 +34,7 @@ export const logout = () => {
     headers: {
       'Accept': 'application/json',
       'Content-type': 'application/json',
-      'X-CSRFToken': csrf
+      
     },
 
   }
@@ -55,7 +57,6 @@ export const createUser = (user) => {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        'X-CSRFToken': csrf,
       },
     }
     axios.post(`${USER_URL}`, user ,config)

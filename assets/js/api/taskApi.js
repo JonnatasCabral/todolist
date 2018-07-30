@@ -1,10 +1,12 @@
 import axios from "axios";
-
 import getCookie from '../common/helpers';
 import { fetchUsersAction, fetchTaskAction } from '../actions/actionTask';
 import { createTaskAction, updateTaskAction, deleteTaskAction } from '../actions/actionTask';
 
 const TASK_URL = '/api/v1/task';
+
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 class TaskApi {
 
@@ -17,7 +19,6 @@ class TaskApi {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
@@ -38,7 +39,6 @@ class TaskApi {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
@@ -60,7 +60,6 @@ class TaskApi {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
@@ -81,7 +80,6 @@ class TaskApi {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
@@ -102,7 +100,6 @@ class TaskApi {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'X-CSRFToken': csrf,
           'Authorization': `Token ${token}`
         },
       }
@@ -123,7 +120,6 @@ class TaskApi {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
