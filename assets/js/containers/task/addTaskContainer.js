@@ -14,6 +14,7 @@ class AddTask extends Component {
       title: '',
       text: '',
       todolist: '',
+      deadline: '',
       assignedTo: '',
       editMode: false,
 
@@ -47,6 +48,7 @@ class AddTask extends Component {
       this.props.updateTask({
           title: this.state.title,
           text: this.state.text,
+          deadline: this.state.deadline,
           id: this.props.match.params.id,
           assigned_to_id: this.state.assignedTo.value,
           todolist: this.props.task.todolist
@@ -55,6 +57,7 @@ class AddTask extends Component {
       this.props.createTask({
         title: this.state.title,
         text: this.state.text,
+        deadline: this.state.deadline,
         todolist: this.props.match.params.id,
         assigned_to_id: this.state.assignedTo.value
       });
@@ -77,6 +80,7 @@ class AddTask extends Component {
         assignedTo={this.state.assignedTo}
         title={this.state.title}
         text={this.state.text}
+        deadline={this.state.deadline}
       />
 		);
 	}

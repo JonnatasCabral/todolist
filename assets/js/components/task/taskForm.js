@@ -59,7 +59,7 @@ class TaskForm extends React.Component {
               type="deadline"
               name="deadline" 
               id="taskText" 
-              type="date"
+              type="datetime-local"
               onChange={(e) => {this.props.updateState(e.target.value, 'deadline')}}
             />
           </FormGroup>
