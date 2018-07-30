@@ -42,8 +42,6 @@ class AddTask extends Component {
 
 	onSubmit(e) {
     e.preventDefault()
-
-    // TODO: Se editMode tem que chamar this.props.editTask
     if (this.state.editMode) {
       this.props.updateTask({
           title: this.state.title,

@@ -14,7 +14,7 @@ class LogoutContainer extends Component {
   render(){
     return (
       <div>
-          <Button onClick={this.onClick.bind(this)} color="secondary">
+          <Button onClick={this.onClick.bind(this)} outline color="secondary">
             Logout
           </Button>
       </div>

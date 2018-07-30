@@ -2,10 +2,8 @@ import axios from "axios";
 import getCookie from '../common/helpers';
 import { fetchTodoListsAction, addNewTodoList, deleteTodoList } from '../actions/actionTodoList';
 
-
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 const ROOT_URL = "/api/v1/todolists/";
 
@@ -13,13 +11,12 @@ class TodoListApi {
   
   static fetchTodoLists (user) {
     return (dispatch) => {
-      const csrf = getCookie('csrftoken');
-      const token = user.token
+      const token = user.token;
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'authorization': `Token ${token}`
+          'Authorization': `Token ${token}`
         },
       }
       axios.get(`${ROOT_URL}`, config)
@@ -34,8 +31,7 @@ class TodoListApi {
 
   static createTodoList(data) {
     return (dispatch) => {
-      const csrf = getCookie('csrftoken');
-      const token = localStorage.token
+      const token = localStorage.token;
       const config = {
         headers: {
           'Accept': 'application/json',
@@ -54,8 +50,7 @@ class TodoListApi {
 
   static delete(data) {
     return (dispatch) => {
-      const csrf = getCookie('csrftoken');
-      const token = localStorage.token
+      const token = localStorage.token;
       const config = {
         headers: {
           'Accept': 'application/json',

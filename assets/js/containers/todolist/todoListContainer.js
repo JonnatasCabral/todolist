@@ -49,7 +49,7 @@ class ToDoListContainer extends Component{
                     <Link to={url} className="btn btn-primary">Add task</Link>
                   </th>
                   <th>
-                    <Button className="btn btn-danger" onClick={() => this.removeTodolist(todolist.id)}>Remove</Button>
+                    <Button outline color="danger" className="btn btn-danger" onClick={() => this.removeTodolist(todolist.id)}>Remove</Button>
                   </th>
                 </tr>
               </thead>

@@ -1,25 +1,25 @@
 import axios from "axios";
-import getCookie from '../common/helpers';
 import { fetchUsersAction, fetchTaskAction } from '../actions/actionTask';
 import { createTaskAction, updateTaskAction, deleteTaskAction } from '../actions/actionTask';
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+
 const TASK_URL = '/api/v1/task';
 
-axios.defaults.xsrfCookieName = 'csrftoken'
-axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 class TaskApi {
 
   static fetchUsers () {
     return (dispatch) => {
       const USER_URL = '/api/v1/users/list/';
-      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'authorization': `Token ${token}`
+          'Authorization': `Token ${token}`
         },
       }
       axios.get(`${USER_URL}`, config)
@@ -33,13 +33,12 @@ class TaskApi {
   }
   static fetchTask (id) {
     return (dispatch) => {
-      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'authorization': `Token ${token}`
+          'Authorization': `Token ${token}`
         },
       }
       axios.get(`${TASK_URL}/${id}/`, config)
@@ -54,13 +53,12 @@ class TaskApi {
 
   static createTask (task) {
     return (dispatch) => {
-      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'authorization': `Token ${token}`
+          'Authorization': `Token ${token}`
         },
       }
       axios.post(`${TASK_URL}/`, task ,config)
@@ -74,13 +72,12 @@ class TaskApi {
   }
   static updateTask (task) {
     return (dispatch) => {
-      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'authorization': `Token ${token}`
+          'Authorization': `Token ${token}`
         },
       }
       axios.put(`${TASK_URL}/${task.id}/`, task ,config)
@@ -94,7 +91,6 @@ class TaskApi {
   }
   static deleteTask(data) {
     return (dispatch) => {
-      const csrf = getCookie('csrftoken');
       const token = localStorage.token
       const config = {
         headers: {
@@ -114,13 +110,12 @@ class TaskApi {
   }
   static updateStateTask(task) {
     return (dispatch) => {
-      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
-          'authorization': `Token ${token}`
+          'Authorization': `Token ${token}`
         },
       }
       axios.put(`${TASK_URL}/${task.id}/`, task ,config)
