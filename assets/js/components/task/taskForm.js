@@ -14,6 +14,7 @@ class TaskForm extends React.Component {
       this.props.updateState(selectedOption, 'assignedTo');
       this.props.updateState(this.props.task.title, 'title');
       this.props.updateState(this.props.task.text, 'text');
+      this.props.updateState(this.props.task.deadline, 'deadline');
     }
   }
 
@@ -33,7 +34,7 @@ class TaskForm extends React.Component {
               required/>
           </FormGroup>
           <FormGroup>
-            <Label for="title">Text</Label>
+            <Label for="Text">Text</Label>
             <Input
               value={this.props.text}
               type="text"
@@ -44,11 +45,22 @@ class TaskForm extends React.Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="title">Select User to assign the task</Label>
+            <Label for="userTask">Select User to assign the task</Label>
             <Select 
               value={this.props.assignedTo}
               options={this.props.options} 
               onChange={(option) => this.props.updateState(option, 'assignedTo')} 
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="deadline">Deadline</Label>
+            <Input
+              value={this.props.deadline}
+              type="deadline"
+              name="deadline" 
+              id="taskText" 
+              type="date"
+              onChange={(e) => {this.props.updateState(e.target.value, 'deadline')}}
             />
           </FormGroup>
           <FormGroup>
