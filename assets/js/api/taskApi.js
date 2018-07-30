@@ -119,6 +119,7 @@ class TaskApi {
     return (dispatch) => {
       const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
+      const UPDATE_STATE_TASK_URL = '/api/v1/update_state';
       const config = {
         headers: {
           'Accept': 'application/json',
@@ -127,7 +128,7 @@ class TaskApi {
           'authorization': `Token ${token}`
         },
       }
-      axios.put(`${TASK_URL}/${task.id}/`, task ,config)
+      axios.put(`${UPDATE_STATE_TASK_URL}/${task.id}/`, task ,config)
         .then((data) => {
         })
         .catch((error) => {   

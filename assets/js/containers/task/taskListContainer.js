@@ -28,11 +28,11 @@ class TaskListContainer extends Component{
     let new_task = {};
     if (task.is_done){
        new_task = {
-        "id":task.id, "title": task.title, "todolist":task.todolist,"is_done":false
+        id: task.id, is_done:false
       }
     } else {
        new_task = {
-        "id":task.id, "title": task.title, "todolist":task.todolist,"is_done":true
+        id: task.id, is_done:true
       }
     }
     this.props.updateStateTask(new_task);
