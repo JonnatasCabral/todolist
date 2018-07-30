@@ -21,31 +21,44 @@ class TaskForm extends React.Component {
     return (
       <div className="container align-baseline Login">
         <Form onSubmit={this.props.onSubmit.bind(this.props)}>
-          <Input
-            value={this.props.title} 
-            type="title"
-            name="TodoListtitle" 
-            id="todoListTitle" 
-            placeholder="title"
-            onChange={(e) => {this.props.updateState(e.target.value, 'title')}}
-            required/>
-          <Input
-            value={this.props.text}
-            type="text"
-            name="text" 
-            id="taskText" 
-            placeholder="Descrição da task"
-            onChange={(e) => {this.props.updateState(e.target.value, 'text')}}
-          />
-          <Select 
-            value={this.props.assignedTo}
-            options={this.props.options} 
-            onChange={(option) => this.props.updateState(option, 'assignedTo')} 
-          />
-          <Button type="submit" color="primary">
-            Submit
-          </Button>
-          <Link to="/todolist" className="btn btn-primary">Cancel</Link>
+          <FormGroup>
+            <Label for="title">Title</Label>
+            <Input
+              value={this.props.title} 
+              type="title"
+              name="TodoListtitle" 
+              id="todoListTitle" 
+              placeholder="title"
+              onChange={(e) => {this.props.updateState(e.target.value, 'title')}}
+              required/>
+          </FormGroup>
+          <FormGroup>
+            <Label for="title">Text</Label>
+            <Input
+              value={this.props.text}
+              type="text"
+              name="text" 
+              id="taskText" 
+              placeholder="Descrição da task"
+              onChange={(e) => {this.props.updateState(e.target.value, 'text')}}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="title">Select User to assign the task</Label>
+            <Select 
+              value={this.props.assignedTo}
+              options={this.props.options} 
+              onChange={(option) => this.props.updateState(option, 'assignedTo')} 
+            />
+          </FormGroup>
+          <FormGroup>
+            <Button type="submit" color="primary">
+              Submit
+            </Button>
+          </FormGroup>
+          <FormGroup>
+            <Link to="/todolist">Cancel</Link>
+          </FormGroup>
         </Form>
         
       </div>
