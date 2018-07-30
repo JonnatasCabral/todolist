@@ -147,5 +147,3 @@ REST_FRAMEWORK = {
 }
 
 ACCOUNT_LOGOUT_ON_GET = True
-
-CSRF_COOKIE_NAME = "csrftoken"
