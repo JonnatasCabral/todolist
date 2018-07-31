@@ -16,7 +16,7 @@ export const login = (user) => {
 
   }
   return (dispatch) => {
-    axios.post(`${LOGIN_URL}`, user, config)
+    axios.post(`${LOGIN_URL}`, user)
       .then((data) => {
         dispatch(sucessLogin(data));
       })
@@ -36,7 +36,7 @@ export const logout = () => {
 
   }
   return (dispatch) => {
-    return axios.get(`${LOGOUT_URL}`, config)
+    return axios.get(`${LOGOUT_URL}`)
       .then((data) => {
         dispatch(sucessLogout(data));
       })
@@ -55,7 +55,7 @@ export const createUser = (user) => {
         'Content-type': 'application/json',
       },
     }
-    axios.post(`${USER_URL}`, user ,config)
+    axios.post(`${USER_URL}`, user)
       .then((data) => {
       })
       .catch((error) => {   
