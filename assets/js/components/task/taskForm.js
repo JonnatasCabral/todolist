@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Link } from "react-router-dom";
 import _ from 'lodash';
 import Select from 'react-select';
+import CSRFToken from '../../common/csrftoken';
 
 
 class TaskForm extends React.Component {
@@ -22,6 +23,7 @@ class TaskForm extends React.Component {
     return (
       <div className="container align-baseline Login">
         <Form onSubmit={this.props.onSubmit.bind(this.props)}>
+          <CSRFToken />
           <FormGroup>
             <Label for="title">Title</Label>
             <Input

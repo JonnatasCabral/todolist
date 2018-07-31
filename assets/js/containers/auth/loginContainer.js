@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { login } from '../../api/authApi';
-
+import CSRFToken from '../../common/csrftoken';
 
 class LoginContainer extends Component {
 
@@ -46,6 +46,7 @@ class LoginContainer extends Component {
     return(
       <div className="container align-baseline Login">
         <Form onSubmit={this.onSubmit.bind(this)}>
+          <CSRFToken />
           <FormGroup>
             <Label for="exampleUsername">Username</Label>
             <Input type="username" name="username" id="exampleUsername" placeholder="username"
