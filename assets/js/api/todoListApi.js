@@ -16,7 +16,7 @@ class TodoListApi {
           'Accept': 'application/json',
           'Content-type': 'application/json',
           'X-CSRFToken': csrf,
-          'authorization': `Token ${token}`
+          'Authorization': `Token ${token}`
         },
       }
       axios.get(`${ROOT_URL}`, config)
