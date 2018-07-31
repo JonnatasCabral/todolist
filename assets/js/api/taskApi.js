@@ -4,6 +4,9 @@ import getCookie from '../common/helpers';
 import { fetchUsersAction, fetchTaskAction } from '../actions/actionTask';
 import { createTaskAction, updateTaskAction, deleteTaskAction } from '../actions/actionTask';
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 const TASK_URL = '/api/v1/task';
 
 class TaskApi {
