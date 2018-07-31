@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 import { createUser } from '../../api/authApi';
 import { login } from '../../api/authApi';
-
+import CSRFToken from '../../components/csrftoken';
 
 class RegisterContainer extends Component {
 
@@ -39,6 +39,7 @@ class RegisterContainer extends Component {
     return(
       <div className="container align-baseline Login">
         <Form onSubmit={this.onSubmit.bind(this)}>
+        <CSRFToken />
           <FormGroup>
             <Label for="Username">Email</Label>
             <Input type="email" name="email" id="Email" placeholder="email"

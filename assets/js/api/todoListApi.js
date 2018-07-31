@@ -11,11 +11,13 @@ class TodoListApi {
   
   static fetchTodoLists (user) {
     return (dispatch) => {
+      const csrf = getCookie('csrftoken');
       const token = user.token
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
@@ -31,11 +33,13 @@ class TodoListApi {
 
   static createTodoList(data) {
     return (dispatch) => {
+      const csrf = getCookie('csrftoken');
       const token = localStorage.token
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
           'Authorization': `Token ${token}`
         },
       }
@@ -50,11 +54,13 @@ class TodoListApi {
 
   static delete(data) {
     return (dispatch) => {
+      const csrf = getCookie('csrftoken');
       const token = localStorage.token
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
           'Authorization': `Token ${token}`
         },
       }

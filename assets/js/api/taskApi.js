@@ -14,11 +14,13 @@ class TaskApi {
   static fetchUsers () {
     return (dispatch) => {
       const USER_URL = '/api/v1/users/list/';
+      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
@@ -33,11 +35,13 @@ class TaskApi {
   }
   static fetchTask (id) {
     return (dispatch) => {
+      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
@@ -53,11 +57,13 @@ class TaskApi {
 
   static createTask (task) {
     return (dispatch) => {
+      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
@@ -72,11 +78,13 @@ class TaskApi {
   }
   static updateTask (task) {
     return (dispatch) => {
+      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
@@ -91,11 +99,13 @@ class TaskApi {
   }
   static deleteTask(data) {
     return (dispatch) => {
+      const csrf = getCookie('csrftoken');
       const token = localStorage.token
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
           'Authorization': `Token ${token}`
         },
       }
@@ -110,12 +120,14 @@ class TaskApi {
   }
   static updateStateTask(task) {
     return (dispatch) => {
+      const csrf = getCookie('csrftoken');
       const token = localStorage.getItem('token');
       const UPDATE_STATE_TASK_URL = '/api/v1/update_state';
       const config = {
         headers: {
           'Accept': 'application/json',
           'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
           'authorization': `Token ${token}`
         },
       }
