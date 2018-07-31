@@ -13,11 +13,11 @@ class LogoutContainer extends Component {
   }
   render(){
     return (
-        <div>
-            <Button onClick={this.onClick.bind(this)} color="secondary">
-        Logout
-    </Button>
-        </div>
+      <div>
+          <Button onClick={this.onClick.bind(this)} color="secondary">
+            Logout
+          </Button>
+      </div>
     );
   }
 }

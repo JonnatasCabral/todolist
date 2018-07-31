@@ -115,6 +115,27 @@ class TaskApi {
         });
     }
   }
-}
+  static updateStateTask(task) {
+    return (dispatch) => {
+      const csrf = getCookie('csrftoken');
+      const token = localStorage.getItem('token');
+      const UPDATE_STATE_TASK_URL = '/api/v1/update_state';
+      const config = {
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json',
+          'X-CSRFToken': csrf,
+          'authorization': `Token ${token}`
+        },
+      }
+      axios.put(`${UPDATE_STATE_TASK_URL}/${task.id}/`, task ,config)
+        .then((data) => {
+        })
+        .catch((error) => {   
+          console.log(error)
+        });
+    } 
+  }
   
+}
 export default TaskApi;

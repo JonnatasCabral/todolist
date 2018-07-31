@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Row, Col  } from 'reactstrap';
+import {
+  Collapse,
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink } from 'reactstrap';
 
 import AddToDoListContainer from '../../containers/todolist/addTodoListContainer';
 import TodoListApi from '../../api/todoListApi';
@@ -12,15 +19,20 @@ class ToDoList extends Component{
   render() {
 
     return(
+      
       <Container>
-        <Row>
-          <Col xs="9">
+        <Navbar color="light" light expand="md">
+          <NavbarBrand>
             <AddToDoListContainer />
-          </Col>
-          <Col xs="3">
-            <LogoutContainer />
-          </Col>
-        </Row>
+          </NavbarBrand>
+          <Collapse navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink><LogoutContainer /></NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
         <Row>
           <Col>
             <ToDoListContainer />
@@ -32,3 +44,4 @@ class ToDoList extends Component{
 }
 
 export default ToDoList;
+

@@ -14,6 +14,7 @@ class TaskForm extends React.Component {
       this.props.updateState(selectedOption, 'assignedTo');
       this.props.updateState(this.props.task.title, 'title');
       this.props.updateState(this.props.task.text, 'text');
+      this.props.updateState(this.props.task.deadline, 'deadline');
     }
   }
 
@@ -21,31 +22,55 @@ class TaskForm extends React.Component {
     return (
       <div className="container align-baseline Login">
         <Form onSubmit={this.props.onSubmit.bind(this.props)}>
-          <Input
-            value={this.props.title} 
-            type="title"
-            name="TodoListtitle" 
-            id="todoListTitle" 
-            placeholder="title"
-            onChange={(e) => {this.props.updateState(e.target.value, 'title')}}
+          <FormGroup>
+            <Label for="title">Title</Label>
+            <Input
+              value={this.props.title} 
+              type="title"
+              name="TodoListtitle" 
+              id="todoListTitle" 
+              placeholder="title"
+              onChange={(e) => {this.props.updateState(e.target.value, 'title')}}
+              required/>
+          </FormGroup>
+          <FormGroup>
+            <Label for="Text">Text</Label>
+            <Input
+              value={this.props.text}
+              type="text"
+              name="text" 
+              id="taskText" 
+              placeholder="Descrição da task"
+              onChange={(e) => {this.props.updateState(e.target.value, 'text')}}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="userTask">Select User to assign the task</Label>
+            <Select 
+              value={this.props.assignedTo}
+              options={this.props.options} 
+              onChange={(option) => this.props.updateState(option, 'assignedTo')} 
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="deadline">Deadline</Label>
+            <Input
+              value={this.props.deadline}
+              type="deadline"
+              name="deadline" 
+              id="taskText" 
+              type="datetime-local"
+              onChange={(e) => {this.props.updateState(e.target.value, 'deadline')}}
             required/>
-          <Input
-            value={this.props.text}
-            type="text"
-            name="text" 
-            id="taskText" 
-            placeholder="Descrição da task"
-            onChange={(e) => {this.props.updateState(e.target.value, 'text')}}
-          />
-          <Select 
-            value={this.props.assignedTo}
-            options={this.props.options} 
-            onChange={(option) => this.props.updateState(option, 'assignedTo')} 
-          />
-          <Button type="submit" color="primary">
-            Submit
-          </Button>
-          <Link to="/todolist" className="btn btn-primary">Cancel</Link>
+          </FormGroup>
+          <FormGroup>
+            <Button type="submit" color="primary">
+              Submit
+            </Button>
+          </FormGroup>
+          <FormGroup>
+            <Link to="/todolist">Cancel</Link>
+          </FormGroup>
         </Form>
         
       </div>

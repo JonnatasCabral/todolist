@@ -50,13 +50,13 @@ class LoginContainer extends Component {
             <Label for="exampleUsername">Username</Label>
             <Input type="username" name="username" id="exampleUsername" placeholder="username"
               onChange={(e) => {this.updateState(e, 'login')}}
-            />
+            required/>
           </FormGroup>
           <FormGroup>
             <Label for="examplePassword">Password</Label>
             <Input type="password" name="password" id="examplePassword" placeholder="password"
               onChange={(e) => {this.updateState(e, 'password')}}
-            />
+            required/>
           </FormGroup>
           <FormGroup>
             <Button type="submit" color="primary">Login</Button>
