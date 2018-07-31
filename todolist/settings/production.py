@@ -118,3 +118,4 @@ LOGGING = {
 }
 
 JS_REVERSE_EXCLUDE_NAMESPACES = ['admin']
+CSRF_COOKIE_NAME = "csrftoken"
