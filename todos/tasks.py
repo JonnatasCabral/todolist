@@ -6,7 +6,7 @@ from todos.models import Task
 from todolist.celery import app
 
 
-def crete_email(task):
+def crete_email(tasks, user):
     body = "You have some task to work today."
     for task in tasks:
         
@@ -21,10 +21,13 @@ def crete_email(task):
         'todolist@report.com',
         to=[user.email]) 
 
+
 @app.task
-def send_email(user):
-    tasks = user.objects.tasks.all()
-    email = crete_email(tasks)
+def send_email(user_id, start_date, end_date):
+    user = User.objects.get(id=user_id)
+    import ipdb; ipdb.set_trace()
+    tasks = user.tasks.filter(deadline__range=(start_date, end_date))
+    email = crete_email(tasks, user)
 
     email.send()
 
@@ -33,14 +36,10 @@ def send_email(user):
 
 @app.task
 def send_reports():
-    start = datetime.datetime.today() - datetime.timedelta(1)
-    end = start + datetime.timedelta(days=1)
-
-    users = User.objects.prefetch_related(
-      Prefetch(
-        'tasks',
-        queryset=Task.objects.filter(deadline__range=(start, end))
-      )
-    )
+    start_date = datetime.datetime.today() - datetime.timedelta(1)
+    end_date = start_date + datetime.timedelta(days=1)
+    users = User.objects.filter(
+        tasks__isnull=False, tasks__deadline__range=(start_date, end_date))
+    
     for user in users:
-        send_email.delay(user)
+        send_email.delay(user.id, start_date,end_date)
