@@ -38,6 +38,7 @@ ipython = "*"
 django-rest-framework = "*"
 django-rest-auth = "*"
 django-allauth = "*"
+django-celery-beat = "*"
 
 [requires]
 python_version = "3.6"
